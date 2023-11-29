@@ -1,3 +1,4 @@
+/*
 import java.util.ArrayList;
 
 public class Klub {
@@ -15,3 +16,4 @@ public class Klub {
         System.out.println("\nAntal medlemmer i restance: "+n);
     }
 }
+*/
