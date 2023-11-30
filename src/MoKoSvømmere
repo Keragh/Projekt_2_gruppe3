@@ -1,35 +1,7 @@
-import java.util.Scanner;
-
 public class MoKoSvømmere {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        boolean kør = true;
-
-        while (kør) {
-            System.out.println("Vælg svømmertype:");
-            System.out.println("1. Motionist");
-            System.out.println("2. Konkurrencesvømmer");
-            System.out.println("9. Afslut program");
-            System.out.print("Indtast 1, 2 eller 9: ");
-            int valg = scanner.nextInt();
-
-            switch (valg) {
-                case 1:
-                    System.out.println("Du er motionist.");
-                    break;
-                case 2:
-                    System.out.println("Du er konkurrencesvømmer.");
-                    break;
-                case 0:
-                    System.out.println("Programmet afsluttes.");
-                    kør = false; // Sætter kør til false for at afslutte løkken
-                    break;
-                default:
-                    System.out.println("Ugyldigt valg. Prøv igen.\n");
-                    break;
-            }
-        }
-        scanner.close(); // Lukker scanneren ved programafslutning
+    // En metode til at adskille motionister og konkurrencesvømmere
+    public static boolean Konkurrencesvømmer(boolean Motionist) {
+        // Hvis personen er motionist, returneres false, ellers true.
+        return !Motionist;
     }
 }
