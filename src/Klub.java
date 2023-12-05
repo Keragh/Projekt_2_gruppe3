@@ -23,7 +23,7 @@ public class Klub {
         Optional<Medlem> fundetMedlem = KlubMedlemmer.stream() // Optional bruges som variable type, for at benytte stream metoderne.
                 .filter(Medlem -> Medlem.getMedlemID().equals(medlemID)) // Dette tillader os at simplet filtrer for medlems ID,
                 .findFirst();                                            // og returnere dette til fundetMedlem. Dette gøres da jeg kun er
-                                                                        // interesseret i et enkelt objekt og ikke en liste.
+        // interesseret i et enkelt objekt og ikke en liste.
 
         if (fundetMedlem.isPresent()) {
             System.out.println("\nFundet medlem:");
@@ -38,7 +38,7 @@ public class Klub {
                 .toList();
 
         if (!fundetMedlemmer.isEmpty()) {           // hvis medlemmer blev fundet, print. ellers, print ikke.
-        int n = 0;
+            int n = 0;
             for (Medlem medlem: fundetMedlemmer) {
                 n++;
                 System.out.println(medlem+"\n");
@@ -64,6 +64,19 @@ public class Klub {
             else if (!hold) {System.out.println("\nAntal medlemmer af Motionsholdet: "+n);}
             else
                 System.out.println("\nKlubben har ingen medlemmer på nuværende tidspunkt.");
+        }
+
+        public void tilføjMedlem(Medlem nyMedlem) {
+            KlubMedlemmer.add(nyMedlem);
+        }
+        //Metode til udskrive alle medlemmers toString og samle antal medlemmer
+        public void udskrivMedlemmer() {
+            System.out.println("Medlemmer i klubben: ");
+
+            for (Medlem medlem : KlubMedlemmer) {
+                System.out.println(medlem.toString());
+            }
+            System.out.println("Total antal medlemmer: " + KlubMedlemmer.size());
         }
 
     }

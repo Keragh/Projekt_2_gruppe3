@@ -8,12 +8,13 @@ public class Medlem {
     double kontingent;
 
     //Constructor
-    public Medlem (String navn, int alder, boolean hold){
+    public Medlem (String navn, int alder, boolean hold, boolean erAktiv){
         this.navn = navn;
         this.alder = alder;
         this.hold = hold;
         næsteID++;
         medlemsID = næsteID;
+        this.aktiv= erAktiv;
     }
     public Integer getMedlemID () {
         return medlemsID;
@@ -32,6 +33,20 @@ public class Medlem {
         if (!aktivitetsStatus) {
             this.kontingent = 500;
         }
+    }
+    public void kategoriserSvømmer(int alder) {
+        if (alder <= 17) {
+            this.kontingent = 1000;
+        } else if (alder <= 65) {
+            this.kontingent=1600;
+        } else {
+            this.kontingent=1100;
+        }
+    }
+
+    // Metode til at ændre aktivitetsstatus
+    public void sætAktiv(boolean erAktiv) {
+        this.aktiv = erAktiv;
     }
     // toString-metode for at konvert objekter til en string
     @Override
