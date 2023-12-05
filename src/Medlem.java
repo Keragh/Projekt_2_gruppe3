@@ -4,6 +4,7 @@ public class Medlem {
     boolean hold; // note til selv - true = konkurrencehold, false = motionshold - temp !
     protected static int næsteID = 0;
     protected int medlemsID;
+    boolean aktivitetsStatus;
     double kontingent;
 
     //Constructor
@@ -26,6 +27,11 @@ public class Medlem {
     public String holdNavn () {
         if (hold) {return "Konkurrencehold";}
         else return "Motionshold";
+    }
+    public void Konkurrencesvømmer(boolean aktivitetsStatus) {
+        if (!aktivitetsStatus) {
+            this.kontingent = 500;
+        }
     }
     // toString-metode for at konvert objekter til en string
     @Override
