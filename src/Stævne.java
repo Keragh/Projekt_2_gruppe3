@@ -19,14 +19,13 @@ public class Stævne {
     }
 
 
-    public void tilfoejResultat(Disciplin disciplin, int medlemsID, double tid, LocalDate dato) {
+    public void tilfoejResultat(Disciplin disciplin, Medlem medlem, double tid) {
         var resultat = new Resultat();
         resultat.disciplin = disciplin;
-        resultat.medlemsID = medlemsID;
+        resultat.medlemsID = medlem.medlemsID;
         resultat.tid = tid;
         resultat.dato = stævneDato;
         resultats.add(resultat);
     }
-
 }
 
