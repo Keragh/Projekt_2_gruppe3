@@ -5,10 +5,10 @@ public class Resultat {
     LocalDate dato;
     double tid;
     Disciplin disciplin;
-    String medlemID;
+    int medlemsID;
 
-    public String getMedlemID() {
-        return medlemID;
+    public int getMedlemID() {
+        return medlemsID;
     }
 
     public double getTid() {

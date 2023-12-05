@@ -1,16 +1,31 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Stævne {
-    LocalDate dato;
-    String navn;
-    ArrayList<Medlem> konkurrenceSvommere = new ArrayList<>();
-    ArrayList<Integer> placering = new ArrayList<>();
+
+    LocalDate stævneDato;
+
+    ArrayList<Resultat> resultats = new ArrayList<>();
+
+    String stævneNavn;
 
 
-    public Stævne(LocalDate dato, String navn, ArrayList<String> konkurrenceSvommere, ArrayList<Integer> placering){
-        this.dato=dato;
-        this.navn=navn;
+    public Stævne(String stævneNavn, LocalDate stævneDato){
+        this.stævneNavn=stævneNavn;
+        this.stævneDato=stævneDato;
+    }
+
+
+    public void tilfoejResultat(Disciplin disciplin, int medlemsID, double tid, LocalDate dato) {
+        var resultat = new Resultat();
+        resultat.disciplin = disciplin;
+        resultat.medlemsID = medlemsID;
+        resultat.tid = tid;
+        resultat.dato = stævneDato;
+        resultats.add(resultat);
     }
 
 }
