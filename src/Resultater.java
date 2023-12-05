@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 public class Resultater {
     ArrayList<Resultat> resultatListe = new ArrayList<>();
 
-    void tilfoejResultat(Disciplin disciplin, int medlemsID, double tid, LocalDate dato) {
+    void tilfoejResultat(Disciplin disciplin, Medlem medlem, double tid, LocalDate dato) {
         var resultat = new Resultat();
         resultat.disciplin = disciplin;
-        resultat.medlemsID = medlemsID;
+        resultat.medlemsID = medlem.medlemsID;
         resultat.tid = tid;
         resultat.dato = dato;
         resultatListe.add(resultat);
