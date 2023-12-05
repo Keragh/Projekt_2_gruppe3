@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -5,9 +6,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Klub {
-    ArrayList<Medlem> KlubMedlemmer = new ArrayList<>();// liste over alle klubmedlemmer
 
-    Klub() {}
+    ArrayList<Medlem> KlubMedlemmer = new ArrayList<>();// liste over alle klubmedlemmer
+    ArrayList<Stævne> stævneliste=new ArrayList<>();
+
+    public static Stævne opretStævne(String stævneNavn, LocalDate stævneDato, ArrayList<Stævne> stævneliste){
+        Stævne stævner = new Stævne(stævneNavn, stævneDato);
+        stævneliste.add(stævner);
+    }
+
     public static void checkListForRestance (ArrayList<Medlem> klubMedlemmer) {
         klubMedlemmer.sort(Comparator.comparing(Medlem -> Medlem.medlemsID)); // sorter liste efter medlemsID fra laveste til højeste
         int n = 0;
