@@ -56,20 +56,23 @@ public class Klub {
 
         if (!fundetMedlemmer.isEmpty()) {           // samme som ovenstående metode (soegMedlemmer), blot sorteret efter hold i stedet.
             int n = 0;
-            for (Medlem medlem: fundetMedlemmer) {
+            for (Medlem medlem : fundetMedlemmer) {
                 n++;
-                System.out.println(medlem+"\n");
+                System.out.println(medlem + "\n");
             }
-            if (hold) {System.out.println("\nAntal medlemmer af Konkurrenceholdet: "+n);}
-            else if (!hold) {System.out.println("\nAntal medlemmer af Motionsholdet: "+n);}
-            else
+            if (hold) {
+                System.out.println("\nAntal medlemmer af Konkurrenceholdet: " + n);
+            } else if (!hold) {
+                System.out.println("\nAntal medlemmer af Motionsholdet: " + n);
+            } else
                 System.out.println("\nKlubben har ingen medlemmer på nuværende tidspunkt.");
         }
+    }
 
         public void tilføjMedlem(Medlem nyMedlem) {
             KlubMedlemmer.add(nyMedlem);
         }
-        //Metode til udskrive alle medlemmers toString og samle antal medlemmer
+//      Metode til udskrive alle medlemmers toString og samle antal medlemmer
         public void udskrivMedlemmer() {
             System.out.println("Medlemmer i klubben: ");
 
@@ -78,6 +81,4 @@ public class Klub {
             }
             System.out.println("Total antal medlemmer: " + KlubMedlemmer.size());
         }
-
-    }
 }
