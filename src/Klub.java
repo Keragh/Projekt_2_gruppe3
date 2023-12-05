@@ -15,7 +15,14 @@ public class Klub {
         stævneliste.add(stævner);
     }
 
-    public static void checkListForRestance (ArrayList<Medlem> klubMedlemmer) {
+    public void opretMedlem(String navn, int alder, boolean hold, boolean erAktiv){
+        Medlem medlem=new Medlem(navn, alder, hold, erAktiv);
+        KlubMedlemmer.add(medlem);
+        System.out.println("Oprettet medlem: ");
+        System.out.println(medlem + "\n");
+    }
+
+    public void checkListForRestance (ArrayList<Medlem> klubMedlemmer) {
         klubMedlemmer.sort(Comparator.comparing(Medlem -> Medlem.medlemsID)); // sorter liste efter medlemsID fra laveste til højeste
         int n = 0;
         for (Medlem medlem : klubMedlemmer) { // gennemløber arraylisten, og tjekker hvert objekt for restance > 0
@@ -75,11 +82,7 @@ public class Klub {
                 System.out.println("\nKlubben har ingen medlemmer på nuværende tidspunkt.");
         }
     }
-
-        public void tilføjMedlem(Medlem nyMedlem) {
-            KlubMedlemmer.add(nyMedlem);
-        }
-//      Metode til udskrive alle medlemmers toString og samle antal medlemmer
+        //Metode til udskrive alle medlemmers toString og samle antal medlemmer
         public void udskrivMedlemmer() {
             System.out.println("Medlemmer i klubben: ");
 
@@ -88,4 +91,4 @@ public class Klub {
             }
             System.out.println("Total antal medlemmer: " + KlubMedlemmer.size());
         }
-}
+    }

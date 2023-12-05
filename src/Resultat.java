@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-enum Disciplin {RYG, BRYST, BUTTERFLIES}
+enum Disciplin {RYG, BRYST, BUTTERFLY}
 public class Resultat {
     LocalDate dato;
     double tid;

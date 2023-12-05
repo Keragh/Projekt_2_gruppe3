@@ -2,7 +2,7 @@ public class Medlem {
     String navn;
     int alder;
     boolean hold; // note til selv - true = konkurrencehold, false = motionshold - temp !
-    protected static int næsteID = 0; //sætter ID's værdi til 0, fordi metoden siger +1 når et medlem bliver oprettet, så første medlem får tallet 1.
+    protected static int næsteID = 0; //sætter ID'sl værdi til 0, fordi metoden siger +1 når et medlem bliver oprettet, så første medlem får tallet 1.
     protected int medlemsID;
     boolean aktivitetsStatus;
     double kontingent;
@@ -45,7 +45,7 @@ public class Medlem {
         } else if (alder <= 65) {
             this.kontingent=1600;
         } else {
-            this.kontingent=1100;
+            this.kontingent=1600*0.75; //For at få beløb 25% rabat
         }
     }
 
