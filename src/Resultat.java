@@ -19,7 +19,7 @@ public class Resultat {
     }
 
     public String toString(){ //Giver basal information omkring hvordan det gik.
-        return "\nDeciplin: "+disciplin+"\nDatoen er den: "+dato+"\nDin tid var: "+tid;
+        return "\nDeciplin: "+disciplin+"\nDatoen er den: "+dato+"\nDin tid var: "+tid+"sekunder.";
     }
 }
 

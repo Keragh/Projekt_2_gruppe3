@@ -14,7 +14,8 @@ public class Medlem {
         this.hold = hold;
         næsteID++;
         medlemsID = næsteID;
-        this.aktivitetsStatus= erAktiv;
+        this.aktivitetsStatus = erAktiv;
+        this.kontingent = saetKontigent(erAktiv, alder);
     }
 
     public void betalKontingent (){ //metode for at betale kontingent.
@@ -34,21 +35,19 @@ public class Medlem {
         if (hold) {return "Konkurrencehold";}
         else return "Motionshold";
     }
-    public void Konkurrencesvømmer(boolean aktivitetsStatus) {
+    public int saetKontigent(boolean aktivitetsStatus, int alder) {
         if (!aktivitetsStatus) {
-            this.kontingent = 500;
+            return 500;
         }
-    }
-    public void kategoriserSvømmer(int alder) {
+        else
         if (alder <= 17) {
-            this.kontingent = 1000;
+            return 1000;
         } else if (alder <= 65) {
-            this.kontingent=1600;
+            return 1600;
         } else {
-            this.kontingent=1600*0.75; //For at få beløb 25% rabat
+            return (int)(1600*0.75); //For at få beløb 25% rabat
         }
     }
-
     // Metode til at ændre aktivitetsstatus
     public void sætAktiv(boolean erAktiv) {
         this.aktivitetsStatus = erAktiv;

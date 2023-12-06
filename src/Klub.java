@@ -16,7 +16,7 @@ public class Klub {
     }
 
     public void opretMedlem(String navn, int alder, boolean hold, boolean erAktiv){
-        Medlem medlem=new Medlem(navn, alder, hold, erAktiv);
+        Medlem medlem = new Medlem(navn, alder, hold, erAktiv);
         KlubMedlemmer.add(medlem);
         System.out.println("Oprettet medlem: ");
         System.out.println(medlem + "\n");
@@ -31,7 +31,7 @@ public class Klub {
                 n++; // counter for totalt antal medlemmer i restance
             }
         }
-        System.out.println("\nAntal medlemmer i restance: "+n);
+        System.out.println("\nAntal medlemmer i restance: "+n+"\n");
     }
     public Medlem soegMedlemID (int medlemID) {
         Optional<Medlem> fundetMedlem = KlubMedlemmer.stream() // Optional bruges som variable type, for at benytte stream metoderne.
@@ -83,6 +83,6 @@ public class Klub {
             for (Medlem medlem : KlubMedlemmer) {
                 System.out.println(medlem.toString());
             }
-            System.out.println("Total antal medlemmer: " + KlubMedlemmer.size());
+            System.out.println("\nTotal antal medlemmer: " + KlubMedlemmer.size()+"\n");
         }
     }
