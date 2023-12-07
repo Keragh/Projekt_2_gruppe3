@@ -121,7 +121,10 @@ public class Menu {
                                         System.out.println("Gennemfør afbetaling af restance?");
                                         System.out.println("1. Ja");
                                         System.out.println("2. Nej");
-                                        midlertidigtmedlem3.betalKontingent();
+                                        int op5 = sc.nextInt();
+                                        if (op5 == 1) {
+                                            midlertidigtmedlem3.betalKontingent();
+                                        }
                                         break;
                                     case 6:
                                         System.out.println("Indtast medlemsID:");
