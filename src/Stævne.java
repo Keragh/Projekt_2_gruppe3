@@ -19,12 +19,14 @@ public class Stævne {
     }
 
 
-    public void tilfoejResultat(Disciplin disciplin, Medlem medlem, double tid) {
+    public void tilfoejResultat(Disciplin disciplin, Medlem medlem, double tid, int placering) {
         var resultat = new Resultat();
         resultat.disciplin = disciplin;
         resultat.medlemsID = medlem.medlemsID;
+        resultat.navn = medlem.navn;
         resultat.tid = tid;
         resultat.dato = stævneDato;
+        resultat.placering = placering;
         resultats.add(resultat);
     }
 }

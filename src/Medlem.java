@@ -48,26 +48,8 @@ public class Medlem {
             return (int)(1600*0.75); //For at få beløb 25% rabat
         }
     }
-    // Metode til at ændre aktivitetsstatus
-    public void sætAktiv(boolean erAktiv) {
-        this.aktivitetsStatus = erAktiv;
-    }
-    // toString-metode for at konvert objekter til en string
     @Override
     public String toString() {
-        return "\nNavn: " + navn + "\n" + "Alder: " + alder + "\n" +"MedlemID: " + medlemsID + "\nHold: "+holdNavn();
-    }
-
-    // Laver en midlertidig main-metode, opretter 2 eksmepler på nyt medlem for at teste det virker
-    public static void main(String[] args) {
-        Medlem medlem1 = new Medlem("John Olsen", 60, true, true);
-        Medlem medlem2 = new Medlem("Mariah Carey", 18, false, true);
-
-        System.out.println(medlem1);
-        System.out.println(medlem2);
-
-        //test af metode
-        medlem1.betalKontingent();
-
+        return "\nNavn: " + navn + "\n" + "Alder: " + alder + "\n" +"MedlemID: " + medlemsID + "\nHold: "+holdNavn(); // toString-metode for at konvert objekter til en string
     }
 }

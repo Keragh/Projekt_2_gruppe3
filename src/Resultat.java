@@ -6,11 +6,8 @@ public class Resultat {
     double tid;
     Disciplin disciplin;
     int medlemsID;
-
-    public int getMedlemID() {
-        return medlemsID;
-    }
-
+    String navn;
+    int placering;
     public double getTid() {
         return tid;
     }
@@ -19,9 +16,11 @@ public class Resultat {
     }
 
     public String toString(){ //Giver basal information omkring hvordan det gik.
-        return "\nDeciplin: "+disciplin+"\nDatoen er den: "+dato+"\nDin tid var: "+tid+"sekunder.";
+        if (placering != 0) {
+        return "\nNavn: "+navn+"\nMedlemsID: "+medlemsID+"\nDeciplin: "+disciplin+"\nDatoen er den: "+dato+"\nDin tid var: "+tid+"sekunder.\nPlacering: "+placering;
     }
+        else
+            return "\nNavn: "+navn+"\nMedlemsID: "+medlemsID+"\nDeciplin: "+disciplin+"\nDatoen er den: "+dato+"\nDin tid var: "+tid+"sekunder.";
+    }
+
 }
-
-
-
