@@ -1,15 +1,24 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
-    public void menu() {
+    Klub klub = new Klub();
+    Resultater resultater = new Resultater();
+
+    public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
 
-        Klub klub = new Klub();
-        Resultater resultater = new Resultater();
+        klub.initializeKlubmedlemmer();
+        klub.initializeStævner();
+        intializeResultater();
+
         while (true) {
             System.out.println("Hovedmenu"); //hovedmenu
             System.out.println("1. Medlem");
@@ -50,6 +59,7 @@ public class Menu {
                                         System.out.println("Opret medlem");
                                         System.out.println("Indtast navn: ");
                                         String navn = sc.next();
+                                        navn = klub.spellingControl(navn);
                                         System.out.println("Indtast alder: ");
                                         int alder = sc.nextInt();
                                         System.out.println("Vælg hold: ");
@@ -75,6 +85,7 @@ public class Menu {
                                     case 2:
                                         System.out.println("Søg medlem med navn"); //listen af medlemmer gennemkigges og sorteres for navn, i metoden soegMedlemNavn
                                         String navn1 = sc.next();
+                                        navn1 = klub.spellingControl(navn1);
                                         klub.soegMedlemNavn(navn1);
                                         break;
                                     case 3:
@@ -254,8 +265,8 @@ public class Menu {
                                         System.out.println("\nIndtast opnået placering: ");
                                         int placering = sc.nextInt();
 
-                                        midlertidigtStævne.tilfoejResultat(valgtDisciplin, tempMedlem, tidopnået, placering);
-                                        resultater.tilfoejResultat(valgtDisciplin, tempMedlem.medlemsID, tempMedlem.navn, tidopnået, midlertidigtStævne.stævneDato);
+                                        midlertidigtStævne.tilfoejResultat(valgtDisciplin, tempMedlem, tidopnået, placering, op5);
+                                        resultater.tilfoejResultat(valgtDisciplin, tempMedlem.medlemsID, tempMedlem.navn, tidopnået, midlertidigtStævne.stævneDato, placering, op5);
                                         System.out.println("\nDet opnåede resultat er tilføjet til stævnet.\n");
                                         break;
                                     case 3:
@@ -269,7 +280,7 @@ public class Menu {
                                         Stævne midlertidigtStævne1 = klub.stævneliste.get(op6 - 1);
 
                                         for (Resultat resultat : midlertidigtStævne1.resultats) {
-                                            System.out.println("\n" + resultat);
+                                            System.out.println("\n" + resultat+"\nPlacering: "+resultat.placering);
                                         }
                                         break;
                                 }
@@ -336,7 +347,7 @@ public class Menu {
                                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
                                         LocalDate newDato = LocalDate.parse(dato, dtf);
 
-                                        resultater.tilfoejResultat(valgtDisciplin, tempMedlem.medlemsID, tempMedlem.navn, tidopnået, newDato);
+                                        resultater.tilfoejResultat(valgtDisciplin, tempMedlem.medlemsID, tempMedlem.navn, tidopnået, newDato,0,0);
                                         break;
                                     case 2:
                                         for (Resultat res : resultater.resultatListe) {
@@ -367,5 +378,49 @@ public class Menu {
                 sc.next();
             }
         }
+    }
+    public void intializeResultater() throws IOException {
+        ReadData readData = new ReadData();
+        ArrayList<String> savedData = readData.getResultat();
+
+        int i = 0;
+        while (savedData.size() > i) {
+            readData.opretIndlæstResultat(savedData,i);
+            Resultat resultat = new Resultat();
+            Medlem tempMedlem = klub.KlubMedlemmer.get(i);
+            resultat.medlemsID = readData.resultatmedlemsID;
+            resultat.disciplin = readData.disciplin;
+            resultat.tid = readData.tid;
+            resultat.placering = readData.placering;
+            resultat.dato = readData.dato;
+            resultat.stævnenummer = readData.stævneID;
+            resultater.tilfoejResultat(resultat.disciplin, resultat.medlemsID, tempMedlem.navn, resultat.tid, resultat.dato, resultat.placering, resultat.stævnenummer);
+            Stævne tempStævne = klub.stævneliste.get(resultat.stævnenummer);
+            tempStævne.tilfoejResultat(resultat.disciplin, tempMedlem, resultat.tid, resultat.placering, resultat.stævnenummer);
+            i++;
+        }
+    }
+
+    public void saveData(ArrayList<Medlem> l, ArrayList<Resultat> m, ArrayList<Stævne> n) throws IOException {
+        FileWriter filmedlem = new FileWriter("MedlemsListe.txt");
+        PrintWriter udmedlem = new PrintWriter(filmedlem);
+        for (Medlem s: l){
+            udmedlem.println(s.navn+","+s.alder+","+s.hold+","+s.aktivitetsStatus+",");
+        }
+        filmedlem.close();
+
+        FileWriter filresultat = new FileWriter("ResultatListe.txt");
+        PrintWriter udresultat = new PrintWriter(filresultat);
+        for (Resultat s: m){
+            udresultat.println(s.disciplin+","+s.medlemsID+","+s.tid+","+s.dato+","+s.placering+","+s.stævnenummer+",");
+        }
+        filresultat.close();
+
+        FileWriter filstævne = new FileWriter("StævneListe.txt");
+        PrintWriter udstævne = new PrintWriter(filstævne);
+        for (Stævne s: n){
+            udstævne.println(s.stævneNavn+","+s.stævneDato+",");
+        }
+        filstævne.close();
     }
 }

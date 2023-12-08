@@ -8,6 +8,7 @@ public class Resultat {
     int medlemsID;
     String navn;
     int placering;
+    int stævnenummer;
     public double getTid() {
         return tid;
     }

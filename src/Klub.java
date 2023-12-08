@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -8,7 +9,34 @@ import java.util.Optional;
 public class Klub {
 
     ArrayList<Medlem> KlubMedlemmer = new ArrayList<>();// liste over alle klubmedlemmer
-    ArrayList<Stævne> stævneliste=new ArrayList<>();
+    ArrayList<Stævne> stævneliste = new ArrayList<>();
+
+    public void initializeKlubmedlemmer() throws IOException {
+
+        ReadData readData = new ReadData();
+        ArrayList<String> savedData = readData.getMedlem();
+
+        int i = 0;
+        while (savedData.size() > i) {
+            readData.opretIndlæstMedlem(savedData,i);
+            Medlem indlæstMedlem = new Medlem(readData.navn, readData.saveAlder, readData.saveHold, readData.saveErAktiv);
+            KlubMedlemmer.add(indlæstMedlem);
+            i++;
+        }
+    }
+
+    public void initializeStævner() throws IOException {
+        ReadData readData = new ReadData();
+        ArrayList<String> savedData = readData.getStævne();
+
+        int i = 0;
+        while (savedData.size() > i) {
+            readData.opretIndlæstStævne(savedData,i);
+            Stævne stævne = new Stævne(readData.stævneNavn, readData.stævneDato);
+            stævneliste.add(stævne);
+            i++;
+        }
+    }
 
     public void opretStævne(String stævneNavn, LocalDate stævneDato){
         Stævne stævner = new Stævne(stævneNavn, stævneDato);
@@ -20,6 +48,10 @@ public class Klub {
         KlubMedlemmer.add(medlem);
         System.out.println("Oprettet medlem: ");
         System.out.println(medlem + "\n");
+    }
+    public String spellingControl(String str) {
+        if (str == null || str.isEmpty()) return str;
+        return str.substring(0,1).toUpperCase() + str.substring(1);
     }
 
     public void checkListForRestance (ArrayList<Medlem> klubMedlemmer) {
