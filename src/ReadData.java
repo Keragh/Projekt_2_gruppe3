@@ -15,7 +15,6 @@ public class ReadData {
     String stævneNavn;
     LocalDate stævneDato;
     Disciplin disciplin;
-    String medlemsNavn;
     int resultatmedlemsID;
     LocalDate dato;
     double tid;
